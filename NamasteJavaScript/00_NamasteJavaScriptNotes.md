@@ -179,6 +179,7 @@ Global Execution Context during the **Code Execution Phase** (Second phase of ex
 </table>
 
 <br>
+<br>
 
 <u>***Step 3:***</u>
 Global Execution Context during the **Code Execution Phase** (After the completion of execution of an instance of function invoked) :
