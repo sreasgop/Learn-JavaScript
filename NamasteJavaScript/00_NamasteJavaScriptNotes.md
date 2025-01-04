@@ -347,3 +347,98 @@ JavaScript maintains a call stack where the **Global Execution Context** is the 
 <br>
 
 --- 
+
+<br>
+
+### What is Hoisting in JavaScript?
+
+
+
+In JavaScript, **hoisting** is a behavior where declarations of variables, functions, and classes are moved (or "hoisted") to the top of their scope during the compilation phase, before the code is executed. This means you can use variables and functions before they are declared in the code.
+
+However, hoisting doesn't move the actual code; it only moves the declarations.
+
+---
+
+#### **1. Variable Hoisting**
+
+Variables declared with `var` are hoisted, but their initialization is not. Until the line where the variable is initialized, it will have the value `undefined`.
+
+#### Example:
+```javascript
+console.log(x); // undefined
+var x = 5;
+console.log(x); // 5
+```
+- **What happens internally?**
+  ```javascript
+  var x;         // Declaration is hoisted
+  console.log(x); // undefined (default value)
+  x = 5;         // Initialization happens here
+  console.log(x); // 5
+  ```
+
+Variables declared with `let` and `const` are also hoisted but are not initialized. They remain in a **temporal dead zone (TDZ)** from the start of the block until their declaration is encountered.
+
+#### Example:
+```javascript
+console.log(y); // ReferenceError: Cannot access 'y' before initialization
+let y = 10;
+```
+
+---
+
+#### **2. Function Hoisting**
+
+Function declarations are hoisted along with their body, allowing you to call the function before its declaration.
+
+#### Example:
+```javascript
+sayHello(); // "Hello!"
+function sayHello() {
+  console.log("Hello!");
+}
+```
+
+- **What happens internally?**
+  ```javascript
+  function sayHello() {
+    console.log("Hello!");
+  }
+  sayHello();
+  ```
+
+However, function expressions (e.g., `let foo = function() {}`) are hoisted differently. Only the variable declaration is hoisted, not the function body.
+
+#### Example:
+```javascript
+greet(); // TypeError: greet is not a function
+var greet = function () {
+  console.log("Hi!");
+};
+```
+
+---
+
+#### **3. Class Hoisting**
+
+Classes are also hoisted but are placed in the **temporal dead zone**. You cannot use them before their declaration.
+
+#### Example:
+```javascript
+const obj = new MyClass(); // ReferenceError: Cannot access 'MyClass' before initialization
+class MyClass {
+  constructor() {
+    this.name = "Test";
+  }
+}
+```
+
+---
+
+### **Key Takeaways:**
+- **`var`** declarations are hoisted and initialized with `undefined`.
+- **`let` and `const`** are hoisted but not initialized, resulting in a temporal dead zone.
+- **Function declarations** are fully hoisted.
+- **Function expressions and arrow functions** behave like variables—they are hoisted but uninitialized.
+- **Classes** are hoisted but cannot be accessed before their declaration.
