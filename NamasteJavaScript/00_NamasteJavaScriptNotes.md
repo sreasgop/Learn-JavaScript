@@ -1,5 +1,7 @@
 <h1 align="center" style="font-family: cascadia code; color: cyan;" > Namaste JavaScript Notes </h1>
 
+<br>
+
 ### Everything in JavaScript happens inside an ***Execution Context.***
 
 #### What is Execution Context?
@@ -29,6 +31,8 @@ Execution Context is made up of **Variable Environment** which is also known as 
 
 ---
 
+<br>
+
 ### JavaScript is a ***Synchronous*** ***Single-threaded*** language.
 
 #### What does Single-threaded mean?
@@ -40,6 +44,9 @@ It means that JavaScript can execute one command at a time in a specific order. 
 <br>
 
 ---
+
+<br>
+
 ### What happens when we run JavaScript Code?
 
 An execution context is created when we run a JavaScript Code. Let's see what happens when we run this code with the help of this simple program that calculate the square of given numbers. 
