@@ -214,3 +214,136 @@ Global Execution Context during the **Code Execution Phase** (After the completi
         <td> -------- </td>
     </tr>
 </table>
+
+
+<br>
+
+---
+
+<br>
+
+### How does JavaScript maintain all the Execution Contexts?
+
+JavaScript maintains a call stack where the **Global Execution Context** is the first to get into the stack and every time a new **Execution Context** is created it is pushed into the call stack and every time an **Execution Context** is deleted it is popped out of the call stack. Eventually when the program is execution the call stack is emptied with popping out the **Global Execution Context**. 
+
+<br>
+
+***Step 1:*** At first the Global Execution Context is pushed into the stack as the program execution begins with the creation of the Global Execution Context.
+<table border="1">
+    <tr>
+        <th> Call Stack</th>
+    </tr>
+    <tr>
+        <td> --- </td>
+    </tr>
+    <tr>
+        <td> --- </td>
+    </tr>
+    <tr>
+        <td>Global_Execution_Context</td>
+    </tr>
+</table>
+
+<br>
+<br>
+
+***Step 2:*** As the `square()` function is invoked for the first time, Execution_Context_1 is pushed into the stack as well.
+<table border="1">
+    <tr>
+        <th> Call Stack</th>
+    </tr>
+    <tr>
+        <td> --- </td>
+    </tr>
+    <tr>
+        <td>Execution_Context_1</td>
+    </tr>
+    <tr>
+        <td>Global_Execution_Context</td>
+    </tr>
+</table>
+
+<br>
+<br>
+
+***Step 3:*** As the `square(n)` function execution is completed, the Execution_Context_1 created for that specific instance of function call is poppped out of the Call Stack.
+
+<table border="1">
+    <tr>
+        <th> Call Stack</th>
+    </tr>
+    <tr>
+        <td> --- </td>
+    </tr>
+    <tr>
+        <td>---</td>
+    </tr>
+    <tr>
+        <td>Global_Execution_Context</td>
+    </tr>
+</table>
+
+<br>
+<br>
+
+***Step 4:*** As a the `sqaure(n)` function is invoked again, and a new Execution Context is created within the Global Execution Context, Execution_Context_2 is pushed into the Call Stack.
+
+<table border="1">
+    <tr>
+        <th> Call Stack</th>
+    </tr>
+    <tr>
+        <td> --- </td>
+    </tr>
+    <tr>
+        <td>Execution_Context_2</td>
+    </tr>
+    <tr>
+        <td>Global_Execution_Context</td>
+    </tr>
+</table>
+
+<br>
+<br>
+
+***Step 5:*** As the `square(4)` function execution is completed for the instance of this function call, the Execution_Context_2 created for that specific function is poppped out of the Call Stack.
+
+<table border="1">
+    <tr>
+        <th> Call Stack</th>
+    </tr>
+    <tr>
+        <td> --- </td>
+    </tr>
+    <tr>
+        <td> --- </td>
+    </tr>
+    <tr>
+        <td>Global_Execution_Context</td>
+    </tr>
+</table>
+
+<br>
+<br>
+
+***Step 6:*** As the execution of the last line of the program is completed the Global_Execution_Context is popped out of the Call stack and then the Call Stack is made free from the memory as well.
+
+<table border="1">
+    <tr>
+        <th> Call Stack</th>
+    </tr>
+    <tr>
+        <td> --- </td>
+    </tr>
+    <tr>
+        <td> --- </td>
+    </tr>
+    <tr>
+        <td> --- </td>
+    </tr>
+</table>
+
+<br>
+<br>
+
+--- 
