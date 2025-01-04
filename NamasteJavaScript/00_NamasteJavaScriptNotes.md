@@ -247,7 +247,7 @@ JavaScript maintains a call stack where the **Global Execution Context** is the 
 <br>
 <br>
 
-***Step 2:*** As the `square()` function is invoked for the first time, Execution_Context_1 is pushed into the stack as well.
+***Step 2:*** As the `square(n)` function is invoked for the first time, Execution_Context_1 is pushed into the stack as well.
 <table border="1">
     <tr>
         <th> Call Stack</th>
@@ -286,7 +286,7 @@ JavaScript maintains a call stack where the **Global Execution Context** is the 
 <br>
 <br>
 
-***Step 4:*** As a the `sqaure(n)` function is invoked again, and a new Execution Context is created within the Global Execution Context, Execution_Context_2 is pushed into the Call Stack.
+***Step 4:*** As a the `sqaure(4)` function is invoked again, and a new Execution Context is created within the Global Execution Context, Execution_Context_2 is pushed into the Call Stack.
 
 <table border="1">
     <tr>
