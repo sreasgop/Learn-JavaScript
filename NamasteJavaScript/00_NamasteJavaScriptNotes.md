@@ -1,3 +1,5 @@
+<h1 align="center" style="font-family: cascadia code; color: cyan;" > Namaste JavaScript Notes </h1>
+
 ### Everything in JavaScript happens inside an ***Execution Context.***
 
 #### What is Execution Context?
