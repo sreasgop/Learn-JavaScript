@@ -350,7 +350,7 @@ JavaScript maintains a call stack where the **Global Execution Context** is the 
 
 <br>
 
-### What is Hoisting in JavaScript?
+## What is Hoisting in JavaScript?
 
 
 
@@ -436,9 +436,154 @@ class MyClass {
 
 ---
 
-### **Key Takeaways:**
+#### **Key Takeaways:**
 - **`var`** declarations are hoisted and initialized with `undefined`.
 - **`let` and `const`** are hoisted but not initialized, resulting in a temporal dead zone.
 - **Function declarations** are fully hoisted.
 - **Function expressions and arrow functions** behave like variables—they are hoisted but uninitialized.
 - **Classes** are hoisted but cannot be accessed before their declaration.
+
+<br>
+<br>
+
+---
+
+<br>
+
+## **What is Scope in JavaScript?**
+
+**Scope** in JavaScript determines the accessibility (visibility) of variables and functions. It defines where in the code you can use a particular variable or function. JavaScript has three types of scopes:
+
+---
+
+#### **1. Global Scope**
+- Variables or functions declared outside of any function or block belong to the global scope.
+- They are accessible from anywhere in the program.
+
+#### Example:
+```javascript
+var globalVar = "I'm global!";
+
+function printGlobal() {
+  console.log(globalVar); // Accessible
+}
+printGlobal(); // Output: "I'm global"
+console.log(globalVar); // Output: "I'm global"
+```
+
+---
+
+#### **2. Local (Function) Scope**
+- Variables declared within a function are only accessible within that function.
+- These are called **local variables**.
+
+#### Example:
+```javascript
+function localScopeExample() {
+  var localVar = "I'm local!";
+  console.log(localVar); // Accessible inside the function
+}
+localScopeExample();
+console.log(localVar); // Error: localVar is not defined
+```
+
+---
+
+#### **3. Block Scope (ES6 and later)**
+- Variables declared with `let` or `const` are block-scoped, meaning they are only accessible within the block `{}` in which they are defined.
+- This is different from `var`, which does not respect block scope.
+
+#### Example:
+```javascript
+{
+  let blockScoped = "I'm block-scoped!";
+  const anotherBlockScoped = "Me too!";
+  console.log(blockScoped); // Accessible
+}
+console.log(blockScoped); // Error: blockScoped is not defined
+```
+<br>
+<br>
+
+---
+
+<br>
+
+## **What is Scope Chaining?**
+
+**Scope chaining** refers to the process of resolving variable references in JavaScript. When a variable is accessed, JavaScript starts searching for it in the current scope. If it’s not found, the search continues in the outer (parent) scope, and so on, until it reaches the global scope. If the variable is not found in any scope, it results in a `ReferenceError`.
+
+---
+
+#### **How Scope Chaining Works**
+1. **Inner scope can access outer scope variables**:
+   - Functions can access variables declared in their outer (parent) scope due to the lexical scoping rules in JavaScript.
+2. **Outer scope cannot access inner scope variables**:
+   - Variables declared in an inner scope are not accessible from an outer scope.
+
+---
+
+#### Example:
+```javascript
+var globalVar = "I'm global!";
+
+function outerFunction() {
+  var outerVar = "I'm in outerFunction!";
+
+  function innerFunction() {
+    var innerVar = "I'm in innerFunction!";
+    console.log(globalVar); // Accessible (from global scope)
+    console.log(outerVar); // Accessible (from outerFunction's scope)
+    console.log(innerVar); // Accessible (from innerFunction's scope)
+  }
+
+  innerFunction();
+
+  console.log(innerVar); // Error: innerVar is not defined (not accessible here)
+}
+
+outerFunction();
+```
+
+---
+<br>
+
+***Scope Chain:***
+The scope chain is essentially the chain of all parent scopes that JavaScript traverses to resolve a variable. The order of lookup is:
+1. Local scope (innermost)
+2. Parent scope
+3. Global scope
+
+#### Visualization:
+```javascript
+var globalVar = "global";
+
+function outer() {
+  var outerVar = "outer";
+
+  function inner() {
+    var innerVar = "inner";
+    console.log(innerVar); // Found in inner scope
+    console.log(outerVar); // Found in outer scope
+    console.log(globalVar); // Found in global scope
+  }
+
+  inner();
+}
+outer();
+```
+
+---
+
+#### **Key Takeaways**
+- **Scope** determines where variables and functions are accessible.
+- **Scope chaining** enables nested functions to access variables from their parent scopes.
+- **Global scope** is the outermost scope, while **block** and **function scopes** are inner scopes.
+- Always declare variables with `let` or `const` to avoid polluting the global scope and to make use of block scoping.
+
+<br>
+<br>
+
+---
+
+<br>
