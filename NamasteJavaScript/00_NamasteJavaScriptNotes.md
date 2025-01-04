@@ -683,3 +683,121 @@ outer();
 ---
 
 <br>
+
+### What is the difference between Function Scope vs. Block Scope?
+
+The difference in behavior between function blocks and normal blocks in JavaScript arises from the **scoping rules of `var`, `let`, and `const`** and the distinction between **function scope** and **block scope**.
+
+
+- **Function Scope**:
+  - Variables declared with `var` are **function-scoped**, meaning they are scoped to the function they are declared in.
+  - Within a function, any variable declared with `var` is available throughout the entire function, regardless of whether it is inside a block.
+
+- **Block Scope**:
+  - Variables declared with `let` or `const` are **block-scoped**, meaning they are scoped to the nearest enclosing block (`{}`), whether it is inside a function or outside it.
+
+---
+
+### **Shadowing in Blocks and Functions:**
+
+#### **Normal Blocks**
+- In **normal blocks** (outside of functions), `var` does not respect block scope, while `let` and `const` do. This can lead to **shadowing** for `let` and `const` but not for `var`.
+
+Example:
+```javascript
+var x = 10;
+
+{
+    var x = 20; // Re-declares x in the global scope
+    let y = 30; // Creates a new block-scoped variable
+    console.log(x); // 20
+    console.log(y); // 30
+}
+
+console.log(x); // 20 (shadowing didn't happen for var because it's not block-scoped)
+// console.log(y); // Error: y is not defined
+```
+
+Here, `let y` shadows any `y` in the outer scope, but `var x` overwrites the global `x` instead of shadowing it because `var` is not block-scoped.
+
+---
+
+#### **Function Blocks**
+- In **function blocks**, both `var` and `let` behave consistently because functions create a new **function scope**.
+- Variables declared with `var` are scoped to the entire function, so shadowing does not occur inside the function. Similarly, `let` and `const` are scoped to the block or function they are declared in.
+
+Example:
+```javascript
+var x = 10;
+
+function test() {
+    var x = 20; // Scoped to the function, does not affect the global x
+    let y = 30; // Scoped to the block, does not affect any outer y
+    console.log(x); // 20
+    console.log(y); // 30
+}
+
+test();
+
+console.log(x); // 10 (global x is unaffected)
+// console.log(y); // Error: y is not defined
+```
+
+Here, both `var x` and `let y` are scoped to the function and do not interfere with the global variables.
+
+---
+
+### **Why Doesn't Shadowing Happen with `var` in Function Blocks?**
+
+Shadowing requires two variables with the same name to exist in different scopes (one in the inner scope and one in the outer scope). However:
+1. `var` is **function-scoped**, so any `var` inside a function refers to the same scope (the function) as an outer `var` within that function. Thus, no shadowing occurs.
+2. `let` and `const` are **block-scoped**, and block-scoped variables are always confined to the block they are declared in. In function blocks, there is no nested block scope to shadow because the entire function acts as a single scope for `var`.
+
+---
+
+#### **Example Demonstrating Shadowing with `let`**
+
+Shadowing can occur with `let` or `const` because they are block-scoped:
+```javascript
+let x = 10;
+
+{
+    let x = 20; // Shadows the outer x
+    console.log(x); // 20 (inner block's x)
+}
+
+console.log(x); // 10 (outer block's x)
+```
+
+With `var`, no shadowing occurs because the declaration is hoisted to the function or global scope:
+```javascript
+var x = 10;
+
+{
+    var x = 20; // Overwrites the outer x
+    console.log(x); // 20
+}
+
+console.log(x); // 20 (same x, no shadowing)
+```
+
+---
+
+#### **Key Takeaways**
+1. **`var` is function-scoped**:
+   - Shadowing does not occur in function blocks because `var` variables in a function all share the same function scope.
+   - In normal blocks, `var` does not respect block scope and behaves as if declared in the surrounding function or global scope.
+
+2. **`let` and `const` are block-scoped**:
+   - Shadowing happens in block scopes because each block can create its own scope for `let` or `const`.
+   - In function blocks, `let` and `const` behave like `var` in terms of scope because the function is a single block.
+
+3. **Consistency in Function Blocks**:
+   - Both `var` and `let` do not cause shadowing in function blocks because the function scope or block scope is unified under the function's boundaries.
+
+This distinction ensures predictable behavior and highlights the evolution of JavaScript from `var`-only to the introduction of `let` and `const` for better scoping control.
+
+<br>
+<br>
+
+---
