@@ -1,4 +1,15 @@
-JavaScript is a lightweight interpreted programming language with first-class-function
+# Technical Specification: 
 
-# First-Class Function: 
+JavaScript is a lightweight interpreted programming language with first-class-functions. JavaScript is a prototype-based, multi-paradigm, single-threaded, dynamic language, supporting object oriented, imperative and declarative styles. 
+
+## What is an interpreted language?
+An interpreted programming language is a type of high level computer programming language in which each line of source code is read and executed line-by-line by the language interpreter. In such languages, no object-code or executable file is generated, the interpreter goes about executing the source code as it reads one line at a time. 
+
+## What are First-Class Function? 
 A programming language is said to have First-class functions when functions in that language are treated like any other variable. For example, in such a language, a function can be passed as an argument to other functions, can be returned by another function and can be assigned as a value to a variable.
+
+## What are dynamically typed language?
+Dynamically typed languages are those where the interpreter assigns variables a type at runtime based on the variable's value at the time. 
+
+## What are weakly typed language? 
+Weakly typed programming languages are those that do not require you to assign a data type to a variable
